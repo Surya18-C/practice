@@ -2,4 +2,4 @@
 a="hello"
 
 for i in a:
-    print(i)
+     print(i)
