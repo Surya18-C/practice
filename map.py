@@ -1,16 +1,10 @@
 
 
-def squre(x):
-   if x==1:
-      return "sam"
-   elif x==2:
-      return "Babu"
-   else:
-      return x
 
+one=[1,2,3,4,5]
 
-val=[1,2,3,4,5]
+two=[5,4,3,2,1]
 
-a=map(squre , val)
+a=map(lambda x,y : x+y , one , two)
 
-print(set(a))
+print(list(a))
