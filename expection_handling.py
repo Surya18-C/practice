@@ -1,12 +1,12 @@
 
 try:
-    a=int(input("Enter number : "))
+    a=int(input("Enter : "))
 
-except Exception as a:
-    print(a)
+except Exception as e:
+    print(e)
 
 else:
-    print("Else message")
+    print("All done")
 
 finally:
-    print("Print Something")
+    print("Finially")
