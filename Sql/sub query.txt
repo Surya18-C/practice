@@ -1,0 +1,6 @@
+
+use company
+
+select * from employe
+
+select * from employe where salary IN (SELECT salary from employe where salary > 20000)
