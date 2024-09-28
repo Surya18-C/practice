@@ -1,0 +1,30 @@
+
+
+use company
+
+
+select * from employe
+
+select * from dprt
+
+
+WITH CTE AS(
+
+SELECT 
+    e.emp_id, 
+    e.name, 
+    e.salay, 
+    d.dprt 
+FROM 
+    employe AS e
+INNER JOIN 
+    dprt AS d ON e.emp_id = d.dprt_id
+WHERE 
+    e.salay > 20000 
+    AND d.dprt IN ('Android')  -- Filter departments to 'Android' and 'WEB'
+
+)
+
+select * from CTE 
+
+
