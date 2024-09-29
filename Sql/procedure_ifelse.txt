@@ -1,0 +1,33 @@
+
+use car
+
+-- Creating the procedure
+CREATE PROCEDURE CON_CAR
+
+@carid INT
+
+AS
+BEGIN
+
+ IF @carid IS NOT NULL
+
+ BEGIN
+    SELECT c.carid, c.carname, cd.cardescription
+    FROM car AS c
+    INNER JOIN CarDescription AS cd ON c.CarID = cd.CarID where c.CarID=@carid
+
+ END
+
+ ELSE
+
+ BEGIN
+  SELECT c.carid, c.carname, cd.cardescription
+    FROM car AS c
+    INNER JOIN CarDescription AS cd ON c.CarID = cd.CarID
+ END
+END
+
+-- Executing the procedure
+EXEC CON_CAR @carid = NULL
+
+
