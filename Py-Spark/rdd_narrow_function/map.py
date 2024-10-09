@@ -2,12 +2,10 @@ from pyspark.python.pyspark.shell import spark
 
 sc=spark.sparkContext
 
-data=[1,2,3,4,5]
+data=['apple','banana','orange']
 
 rdd=sc.parallelize(data)
 
+up=rdd.map(lambda word : word.upper())
 
-add=rdd.map(lambda x:x+x)
-
-print(add.collect())
-
+print(up.collect())
