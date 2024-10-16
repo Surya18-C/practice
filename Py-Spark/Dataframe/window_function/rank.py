@@ -1,33 +1,20 @@
-# Import necessary libraries
-from pyspark.sql import SparkSession
-from pyspark.sql.window import Window
-from pyspark.sql.functions import rank
+from pyspark.python.pyspark.shell import spark
+from pyspark.sql.connect.window import Window
+from pyspark.sql.functions import *
 
-# Create a Spark session
-spark = SparkSession.builder.appName("WindowFunctionRankExample").getOrCreate()
-
-# Sample data: Employee information with departments
 data = [
-    ('John', 'HR', 5000),
-    ('Alice', 'HR', 6000),
-    ('Bob', 'HR', 5000),
-    ('Cathy', 'Finance', 7000),
-    ('Alex', 'Finance', 7500),
-    ('David', 'Finance', 7000)
+     ("Bob", "English", 80),
+    ("Alice", "Math", 95),
+    ("Bob", "Math", 85),
+     ("Sam", "Math", 85),
+    ("Alice", "English", 90),
+    ("Charlie", "Math", 95),
+    ("Charlie", "English", 70)
 ]
 
-# Create a DataFrame from the sample data
-columns = ["Name", "Department", "Salary"]
-df = spark.createDataFrame(data, columns)
+# Create DataFrame
+df = spark.createDataFrame(data, ["student", "subject", "score"])
 
-# Define a window specification
-window_spec = Window.partitionBy("Department").orderBy("Salary")
+res=df.withColumn("Rank",rank().over(Window.partitionBy('subject').orderBy("score")))
 
-# Use rank() window function to assign ranks within each department
-df_with_rank = df.withColumn("rank", rank().over(window_spec))
-
-# Show the result
-df_with_rank.show()
-
-# Stop the Spark session
-spark.stop()
+res.show()
